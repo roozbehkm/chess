@@ -1,0 +1,156 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+html, body {
+    height: 100vh;
+}
+.content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.board {
+    width: 640px;
+    height: 640px;
+    background-color: #000;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+.tile {
+    flex: 0 0 80px;
+    height: 80px;
+    background-color: rgba(255,255,255,1);
+    transition-duration: 300ms;
+    opacity: 1;
+}
+.tile--black {
+    background-color: rgb(139, 110, 110);
+}
+.tile:hover {
+    /* background-color: rgba(255,255,255,0.9); */
+    /* opacity: 0.8; */
+}
+.tile--canUse {
+    position: relative;
+}
+.tile--canUse::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(204, 116, 116);
+    animation: canUse 2s infinite;
+    z-index: 100;
+}
+@keyframes canUse {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.piece {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    font-size: 55px;
+    text-align: center;
+    cursor: pointer;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+    transition-duration: 500ms;
+    z-index: 0;
+}
+.piece:hover {
+    text-shadow: 2px 5px 5px rgba(0,0,0,0.5);
+    transform: translateY(-5px) scale(1.1);
+}
+
+.numRows{
+    display: flex;
+    flex-direction: column;
+    height: 640px;
+}
+.numRows span {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    height: 80px;
+    border: 2px solid #fff;
+    border-top: 0;
+    background-color: rgb(139, 110, 110);
+    color: #fff;
+}
+.numRows span:last-child {
+    border-bottom: 0;
+}
+
+.colText {
+    display: flex;
+    flex-direction: column;
+}
+.alphabet {
+    width: 100%;
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+}
+.alphabet span {
+    flex: 1;
+    text-align: center;
+    padding: 4px;
+    border: 2px solid #fff;
+    border-left: 0;
+    background-color: rgb(139, 110, 110);
+    color: #fff;
+}
+.alphabet span:last-child {
+    border-right: 0;
+}
+
+.timer {
+    width: 20%;
+    position: absolute;
+    padding: 20px;
+    font-size: 50px;
+    text-align: center;
+}
+.timer--top {
+    top: 0px;
+    left: 0px;
+}
+.timer--bottom {
+    bottom: 0px;
+    left: 0px;
+}
+
+.hostoryLog {
+    height: 400px;
+    width: 200px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin: 0 0 0 50px;
+    transform: translateY(-50%);
+    text-align: center;
+}
+#historyLogList {
+    overflow: overlay;
+    height: 250px;
+    padding: 8px;
+}
+#historyLogList div {
+    padding: 4px;
+}
+#historyLogList div:hover {
+    background-color: rgb(186, 135, 135);
+    color: #fff;
+}

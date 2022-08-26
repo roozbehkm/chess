@@ -1,4 +1,31 @@
 let playerTurn = 'white';
+const pieces = {
+    pawn: {
+        white: '♙',
+        black: '♟',
+    },
+    knight: {
+        white: '♘',
+        black: '♞',
+    },
+    bishop: {
+        white: '♗',
+        black: '♝',
+    },
+    rook: {
+        white: '♖',
+        black: '♜',
+    },
+    king: {
+        white: '♕',
+        black: '♛',
+    },
+    queen: {
+        white: '♔',
+        black: '♚',
+    },
+}
+
 const burntPiece = {
     white: [],
     black: [],
@@ -177,6 +204,7 @@ const addLog = (name, type, from, to) => {
     const el = document.createElement('div');
     el.innerText = msg;
     $('#historyLogList').prepend(el); 
+    $('.historyLog').className = playerTurn === 'white' ? 'historyLog historyLog--rotate' : 'historyLog';
 }
 
 const removeOpponentPiece = (x, y) => {
@@ -199,10 +227,31 @@ on(document, 'removedPiece', function (data) {
     if (data.detail.name === 'king') {
         console.log('>>>>****** ' + getOpponent(data.detail.type) + ' Win ******');
         alert(getOpponent(data.detail.type) + ' Win');
-        
+
         de('win', {
             type: getOpponent(data.detail.type),
         })
     }
     burntPiece[data.detail.type].push(data.detail.name);
+    createBurntPiece();
 });
+
+const createBurntPiece = () => {
+    const burnBoxWhite = $('#burntPieceWhite');
+    burnBoxWhite.innerHTML = '';
+    burntPiece.white.forEach((burtItem) => {
+        const el = document.createElement('div');
+        el.innerText = pieces[burtItem].white;
+
+        burnBoxWhite.append(el);
+    });
+
+    const burnBoxBlack = $('#burntPieceBlack');
+    burnBoxBlack.innerHTML = '';
+    burntPiece.black.forEach((burtItem) => {
+        const el = document.createElement('div');
+        el.innerText = pieces[burtItem].black;
+
+        burnBoxBlack.append(el);
+    });
+}

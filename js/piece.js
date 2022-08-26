@@ -18,33 +18,6 @@ class Piece {
     }
 
     create() {
-        const pieces = {
-            pawn: {
-                white: '♙',
-                black: '♟',
-            },
-            knight: {
-                white: '♘',
-                black: '♞',
-            },
-            bishop: {
-                white: '♗',
-                black: '♝',
-            },
-            rook: {
-                white: '♖',
-                black: '♜',
-            },
-            king: {
-                white: '♕',
-                black: '♛',
-            },
-            queen: {
-                white: '♔',
-                black: '♚',
-            },
-        }
-
         const board = $('.board');
 
         ///////////////////////
@@ -66,7 +39,7 @@ class Piece {
 
         el.style.top = `${parentY}px`;
         el.style.left = `${parentX}px`;
-        el.innerText = pieces[this.name][this.type];
+        el.innerHTML = pieces[this.name][this.type] + `<div class="piece--mini">${pieces[this.name][this.type]}</div>`;
         ///////////////////////
         
         on(el, 'click', function () {

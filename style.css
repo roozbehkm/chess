@@ -3,6 +3,8 @@
     margin: 0;
 }
 html, body {
+    background-color: #000;
+    color: #fff;
     height: 100vh;
 }
 .content {
@@ -67,16 +69,31 @@ html, body {
     cursor: pointer;
     text-shadow: 0px 0px 0px rgba(0,0,0,0);
     transition-duration: 500ms;
+    color: #000;
     z-index: 0;
 }
 .piece:hover {
     text-shadow: 2px 5px 5px rgba(0,0,0,0.5);
     transform: translateY(-5px) scale(1.1);
 }
+.piece--black {
+    transform: rotate(180deg);
+}
+.piece--black:hover {
+    transform: translateY(-5px) scale(1.1) rotate(180deg);
+}
+
+.piece--mini {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    transform: rotate(180deg);
+}
 
 .numRows{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     height: 640px;
 }
 .numRows span {
@@ -89,7 +106,7 @@ html, body {
     background-color: rgb(139, 110, 110);
     color: #fff;
 }
-.numRows span:last-child {
+.numRows span:first-child {
     border-bottom: 0;
 }
 
@@ -126,13 +143,14 @@ html, body {
 .timer--top {
     top: 0px;
     left: 0px;
+    transform: rotate(180deg);
 }
 .timer--bottom {
     bottom: 0px;
     left: 0px;
 }
 
-.hostoryLog {
+.historyLog {
     height: 400px;
     width: 200px;
     position: absolute;
@@ -141,6 +159,11 @@ html, body {
     margin: 0 0 0 50px;
     transform: translateY(-50%);
     text-align: center;
+}
+.historyLog--rotate {
+    transform: rotate(180deg);
+    top: unset;
+    bottom: 30%;
 }
 #historyLogList {
     overflow: overlay;
@@ -153,4 +176,31 @@ html, body {
 #historyLogList div:hover {
     background-color: rgb(186, 135, 135);
     color: #fff;
+}
+
+.burntPiece {
+    position: absolute;
+    right: 0;
+    /* top: 0; */
+    width: 20%;
+    height: calc(50% - 40px);
+    font-size: 55px;
+    margin: 20px;
+    background-color: rgba(255,255,255, 0.5);
+}
+
+.burntPiece div {
+    display: inline-block;
+    margin: 0 6px;
+    cursor: default;
+}
+
+#burntPieceBlack {
+    top: 0;
+    transform: rotate(180deg);
+    color: #000;
+}
+
+#burntPieceWhite {
+    bottom: 0;
 }
